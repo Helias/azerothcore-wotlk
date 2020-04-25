@@ -270,6 +270,8 @@ bool WorldSession::Update(uint32 diff, PacketFilter& updater)
     uint32 processedPackets = 0;
     time_t currentTime = time(nullptr);
 
+    // sLog->outError("DEBUG opcode %s (0x%.4X)", LookupOpcodeName(packet->GetOpcode()), packet->GetOpcode());
+
     while (m_Socket && !m_Socket->IsClosed() && !_recvQueue.empty() && _recvQueue.peek(true) != firstDelayedPacket && _recvQueue.next(packet, updater))
     {
         if (packet->GetOpcode() >= NUM_MSG_TYPES)
@@ -281,6 +283,7 @@ bool WorldSession::Update(uint32 diff, PacketFilter& updater)
             OpcodeHandler &opHandle = opcodeTable[packet->GetOpcode()];
             try
             {
+                sLog->outString("DEBUG ### opcode %s (0x%.4X)", LookupOpcodeName(packet->GetOpcode()), packet->GetOpcode());
                 switch (opHandle.status)
                 {
                     case STATUS_LOGGEDIN:
