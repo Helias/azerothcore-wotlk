@@ -771,7 +771,7 @@ void WorldSession::HandlePlayerLoginOpcode(WorldPacket & recvData)
         KickPlayer("Account can't login with this character");
         return;
     }
-    
+
     // pussywizard:
     if (WorldSession* sess = sWorld->FindOfflineSessionForCharacterGUID(GUID_LOPART(playerGuid)))
         if (sess->GetAccountId() != GetAccountId())
@@ -1197,7 +1197,7 @@ void WorldSession::HandlePlayerLoginFromDB(LoginQueryHolder* holder)
 
     sScriptMgr->OnPlayerLogin(pCurrChar);
 
-    if (pCurrChar->HasAtLoginFlag(AT_LOGIN_FIRST)) 
+    if (pCurrChar->HasAtLoginFlag(AT_LOGIN_FIRST))
     {
         pCurrChar->RemoveAtLoginFlag(AT_LOGIN_FIRST);
         sScriptMgr->OnFirstLogin(pCurrChar);
@@ -1300,7 +1300,7 @@ void WorldSession::HandlePlayerLoginToCharInWorld(Player* pCurrChar)
             }
         }
     }
-    
+
     if (Group* group = pCurrChar->GetGroup())
         group->SendUpdate();
 
@@ -1981,7 +1981,7 @@ void WorldSession::HandleEquipmentSetUse(WorldPacket &recvData)
             item = _player->GetItemByGuid(itemGuid);
 
         uint16 dstpos = i | (INVENTORY_SLOT_BAG_0 << 8);
-        
+
         InventoryResult msg;
 
         Item* uItem = _player->GetItemByPos(INVENTORY_SLOT_BAG_0, i);
@@ -2267,7 +2267,7 @@ void WorldSession::HandleCharFactionOrRaceChange(WorldPacket& recvData)
 
     // xinef: update global data
     sWorld->UpdateGlobalNameData(GUID_LOPART(guid), playerData->name, newname);
-    sWorld->UpdateGlobalPlayerData(GUID_LOPART(guid), 
+    sWorld->UpdateGlobalPlayerData(GUID_LOPART(guid),
         PLAYER_UPDATE_DATA_NAME|PLAYER_UPDATE_DATA_RACE|PLAYER_UPDATE_DATA_GENDER, newname, 0, gender, race);
 
     if (oldRace != race)
@@ -2282,6 +2282,7 @@ void WorldSession::HandleCharFactionOrRaceChange(WorldPacket& recvData)
             case RACE_UNDEAD_PLAYER:
             case RACE_TROLL:
             case RACE_BLOODELF:
+            case RACE_GOBLIN:
                 team = TEAM_HORDE;
                 break;
             default:
@@ -2307,7 +2308,7 @@ void WorldSession::HandleCharFactionOrRaceChange(WorldPacket& recvData)
         trans->Append(stmt);
 
         // Race specific languages
-        if (race != RACE_ORC && race != RACE_HUMAN)
+        if (race != RACE_ORC && race != RACE_HUMAN && race != RACE_WORGEN && race != RACE_GOBLIN)
         {
             stmt = CharacterDatabase.GetPreparedStatement(CHAR_INS_CHAR_SKILL_LANGUAGE);
             stmt->setUInt32(0, lowGuid);
