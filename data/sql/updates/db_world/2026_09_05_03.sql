@@ -1,3 +1,4 @@
+-- DB update 2026_09_05_02 -> 2026_09_05_03
 -- Ironwork Cannon (33264) should attack players with Flame Cannon (62395)
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = 33264;
 
