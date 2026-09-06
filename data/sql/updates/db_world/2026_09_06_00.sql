@@ -1,3 +1,4 @@
+-- DB update 2026_09_05_03 -> 2026_09_06_00
 -- Lore Keeper of Norgannon (Entry 7172)
 -- Synchronize the Trogg and Dwarf visual aids with the dialogue that introduces them
 DELETE FROM `smart_scripts` WHERE (`entryorguid` = 7172) AND (`source_type` = 0);
