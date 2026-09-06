@@ -1,3 +1,4 @@
+-- DB update 2026_09_06_02 -> 2026_09_06_03
 -- Reconstructed Wyrm: do not refresh Frost Breath's active stun (effect 2).
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 13 AND `SourceGroup` = 4 AND `SourceEntry` = 49342 AND `SourceId` = 0 AND `ElseGroup` = 0 AND `ConditionTypeOrReference` = 1 AND `ConditionTarget` = 0 AND `ConditionValue1` = 49342 AND `ConditionValue2` = 2 AND `NegativeCondition` = 1;
 INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`,
