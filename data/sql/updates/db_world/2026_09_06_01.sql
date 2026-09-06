@@ -1,3 +1,4 @@
+-- DB update 2026_09_06_00 -> 2026_09_06_01
 -- Enchanted Scarlet Thread (175966) appears at four locations in a random,
 -- non-repeating order. The Stratholme instance script summons one at a time.
 DELETE FROM `gameobject` WHERE `guid` = 20872 AND `id` = 175966;
