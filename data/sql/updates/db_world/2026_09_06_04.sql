@@ -1,3 +1,4 @@
+-- DB update 2026_09_06_03 -> 2026_09_06_04
 --
 -- Mobile Databank (entry 30313) narrates quest 12986 "Fate of the Titans" at the four
 -- titan temples. Every SMART_ACTION_TALK in its escort script reads a creature_text
